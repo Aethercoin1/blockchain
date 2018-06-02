@@ -1,0 +1,22 @@
+[Unit]
+Description=aethercoin's distributed currency daemon
+After=network.target
+
+[Service]
+User=aethercoin
+Group=aethercoin
+
+Type=forking
+PIDFile=/var/lib/aethercoind/aethercoind.pid
+ExecStart=/usr/bin/aethercoind -daemon -pid=/var/lib/aethercoind/aethercoind.pid \
+-conf=/etc/aethercoin/aethercoin.conf -datadir=/var/lib/aethercoind -disablewallet
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

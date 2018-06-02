@@ -1,0 +1,92 @@
+#!/sbin/runscript
+
+# backward compatibility for existing gentoo layout 
+#
+if [ -d "/var/lib/aethercoin/.aethercoin" ]; then
+	AETHERCOIND_DEFAULT_DATADIR="/var/lib/aethercoin/.aethercoin"
+else
+	AETHERCOIND_DEFAULT_DATADIR="/var/lib/aethercoind"
+fi
+
+AETHERCOIND_CONFIGFILE=${AETHERCOIND_CONFIGFILE:-/etc/aethercoin/aethercoin.conf}
+AETHERCOIND_PIDDIR=${AETHERCOIND_PIDDIR:-/var/run/aethercoind}
+AETHERCOIND_PIDFILE=${AETHERCOIND_PIDFILE:-${AETHERCOIND_PIDDIR}/aethercoind.pid}
+AETHERCOIND_DATADIR=${AETHERCOIND_DATADIR:-${AETHERCOIND_DEFAULT_DATADIR}}
+AETHERCOIND_USER=${AETHERCOIND_USER:-${AETHERCOIN_USER:-aethercoin}}
+AETHERCOIND_GROUP=${AETHERCOIND_GROUP:-aethercoin}
+AETHERCOIND_BIN=${AETHERCOIND_BIN:-/usr/bin/aethercoind}
+AETHERCOIND_NICE=${AETHERCOIND_NICE:-${NICELEVEL:-0}}
+AETHERCOIND_OPTS="${AETHERCOIND_OPTS:-${AETHERCOIN_OPTS}}"
+
+name="aethercoin Core Daemon"
+description="aethercoin cryptocurrency P2P network daemon"
+
+command="/usr/bin/aethercoind"
+command_args="-pid=\"${AETHERCOIND_PIDFILE}\" \
+		-conf=\"${AETHERCOIND_CONFIGFILE}\" \
+		-datadir=\"${AETHERCOIND_DATADIR}\" \
+		-daemon \
+		${AETHERCOIND_OPTS}"
+
+required_files="${AETHERCOIND_CONFIGFILE}"
+start_stop_daemon_args="-u ${AETHERCOIND_USER} \
+			-N ${AETHERCOIND_NICE} -w 2000"
+pidfile="${AETHERCOIND_PIDFILE}"
+
+# The retry schedule to use when stopping the daemon. Could be either
+# a timeout in seconds or multiple signal/timeout pairs (like
+# "SIGKILL/180 SIGTERM/300")
+retry="${AETHERCOIND_SIGTERM_TIMEOUT}"
+
+depend() {
+	need localmount net
+}
+
+# verify
+# 1) that the datadir exists and is writable (or create it)
+# 2) that a directory for the pid exists and is writable
+# 3) ownership and permissions on the config file
+start_pre() {
+	checkpath \
+	-d \
+	--mode 0750 \
+	--owner "${AETHERCOIND_USER}:${AETHERCOIND_GROUP}" \
+	"${AETHERCOIND_DATADIR}"
+
+	checkpath \
+	-d \
+	--mode 0755 \
+	--owner "${AETHERCOIND_USER}:${AETHERCOIND_GROUP}" \
+	"${AETHERCOIND_PIDDIR}"
+
+	checkpath -f \
+	-o ${AETHERCOIND_USER}:${AETHERCOIND_GROUP} \
+	-m 0660 \
+	${AETHERCOIND_CONFIGFILE}
+
+	checkconfig || return 1
+}
+
+checkconfig()
+{
+	if ! grep -qs '^rpcpassword=' "${AETHERCOIND_CONFIGFILE}" ; then
+		eerror ""
+		eerror "ERROR: You must set a secure rpcpassword to run aethercoind."
+		eerror "The setting must appear in ${AETHERCOIND_CONFIGFILE}"
+		eerror ""
+		eerror "This password is security critical to securing wallets "
+		eerror "and must not be the same as the rpcuser setting."
+		eerror "You can generate a suitable random password using the following"
+		eerror "command from the shell:"
+		eerror ""
+		eerror "bash -c 'tr -dc a-zA-Z0-9 < /dev/urandom | head -c32 && echo'"
+		eerror ""
+		eerror "It is also recommended that you also set alertnotify so you are "
+		eerror "notified of problems:"
+		eerror ""
+		eerror "ie: alertnotify=echo %%s | mail -s \"aethercoin Alert\"" \
+			"admin@foo.com"
+		eerror ""
+		return 1
+	fi
+}

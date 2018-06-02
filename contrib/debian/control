@@ -1,0 +1,67 @@
+Source: aethercoin
+Section: utils
+Priority: optional
+Maintainer: Jonas Smedegaard <dr@jones.dk>
+Uploaders: Micah Anderson <micah@debian.org>
+Build-Depends: debhelper,
+ devscripts,
+ automake,
+ libtool,
+ bash-completion,
+ libboost-system-dev (>> 1.35) | libboost-system1.35-dev,
+ libdb4.8++-dev,
+ libssl-dev,
+ pkg-config,
+ libminiupnpc8-dev | libminiupnpc-dev (>> 1.6),
+ libboost-filesystem-dev (>> 1.35) | libboost-filesystem1.35-dev,
+ libboost-program-options-dev (>> 1.35) | libboost-program-options1.35-dev,
+ libboost-thread-dev (>> 1.35) | libboost-thread1.35-dev,
+ libboost-test-dev (>> 1.35) | libboost-test1.35-dev,
+ qt4-qmake,
+ libqt4-dev,
+ libqrencode-dev,
+ libprotobuf-dev, protobuf-compiler,
+ python
+Standards-Version: 3.9.2
+Homepage: https://aethercoincore.org/
+Vcs-Git: git://github.com/aethercoin/aethercoin.git
+Vcs-Browser: https://github.com/aethercoin/aethercoin
+
+Package: aethercoind
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: peer-to-peer network based digital currency - daemon
+ aethercoin is an experimental new digital currency that enables instant
+ payments to anyone, anywhere in the world. aethercoin uses peer-to-peer
+ technology to operate with no central authority: managing transactions
+ and issuing money are carried out collectively by the network. aethercoin Core
+ is the name of the open source software which enables the use of this currency.
+ .
+ This package provides the daemon, aethercoind, and the CLI tool
+ aethercoin-cli to interact with the daemon.
+
+Package: aethercoin-qt
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: peer-to-peer network based digital currency - Qt GUI
+ aethercoin is an experimental new digital currency that enables instant
+ payments to anyone, anywhere in the world. aethercoin uses peer-to-peer
+ technology to operate with no central authority: managing transactions
+ and issuing money are carried out collectively by the network. aethercoin Core
+ is the name of the open source software which enables the use of this currency.
+ .
+ This package provides aethercoin-Qt, a GUI for aethercoin based on Qt.
+
+Package: aethercoin-tx
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: peer-to-peer digital currency - standalone transaction tool
+ aethercoin is an experimental new digital currency that enables instant
+ payments to anyone, anywhere in the world. aethercoin uses peer-to-peer
+ technology to operate with no central authority: managing transactions
+ and issuing money are carried out collectively by the network. aethercoin Core
+ is the name of the open source software which enables the use of this currency.
+ .
+ This package provides aethercoin-tx, a command-line transaction creation
+ tool which can be used without a aethercoin daemon.  Some means of
+ exchanging minimal transaction data with peers is still required.

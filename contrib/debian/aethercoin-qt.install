@@ -1,0 +1,6 @@
+usr/local/bin/aethercoin-qt usr/bin
+share/pixmaps/aethercoin32.xpm usr/share/pixmaps
+share/pixmaps/aethercoin16.xpm usr/share/pixmaps
+share/pixmaps/aethercoin128.png usr/share/pixmaps
+debian/aethercoin-qt.desktop usr/share/applications
+debian/aethercoin-qt.protocol usr/share/kde4/services/

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=aethercoin
+Comment=aethercoin P2P Cryptocurrency
+Comment[fr]=aethercoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=aethercoin, eşten eşe kriptografik sanal para birimi
+Exec=aethercoin-qt %u
+Terminal=false
+Type=Application
+Icon=aethercoin128
+MimeType=x-scheme-handler/aethercoin;
+Categories=Office;Finance;

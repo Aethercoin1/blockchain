@@ -1,0 +1,33 @@
+# /etc/conf.d/aethercoind: config file for /etc/init.d/aethercoind
+
+# Config file location
+#AETHERCOIND_CONFIGFILE="/etc/aethercoin/aethercoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $AETHERCOIND_USER)
+#AETHERCOIND_PIDDIR="/var/run/aethercoind"
+
+# What filename to give the pidfile
+#AETHERCOIND_PIDFILE="${AETHERCOIND_PIDDIR}/aethercoind.pid"
+
+# Where to write aethercoind data (be mindful that the blockchain is large)
+#AETHERCOIND_DATADIR="/var/lib/aethercoind"
+
+# User and group to own aethercoind process
+#AETHERCOIND_USER="aethercoin"
+#AETHERCOIND_GROUP="aethercoin"
+
+# Path to aethercoind executable
+#AETHERCOIND_BIN="/usr/bin/aethercoind"
+
+# Nice value to run aethercoind under
+#AETHERCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+AETHERCOIND_OPTS="-disablewallet"
+
+# The timeout in seconds OpenRC will wait for aethercoind to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+AETHERCOIND_SIGTERM_TIMEOUT=60
