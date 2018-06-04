@@ -28,12 +28,12 @@ WalletFrame::WalletFrame(const PlatformStyle *platformStyle, AetherCoinGUI *_gui
     walletFrameLayout->setContentsMargins(0,0,0,0);
 
     topMenu = new QWidget();
-    topMenu->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    topMenu->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     topMenu->setMinimumWidth(1300);
     topMenu->setFixedHeight(80);
     topMenu->setObjectName("topMenu");
     topMenu->setStyleSheet(
-                "#topMenu { border-image: url(:/icons/background_top)  0 0 0 0 stretch stretch; border: 0px; }");
+                "#topMenu { border-image: url(:/icons/background_top)  0 0 0 0 stretch stretch ; border: 0px;}");
 
     topLayout->addWidget(topMenu);
     topLayout->setAlignment(topMenu,Qt::AlignLeft);

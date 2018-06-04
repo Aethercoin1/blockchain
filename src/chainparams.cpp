@@ -150,7 +150,7 @@ public:
         nPruneAfterHeight = 100000;
         bnProofOfWorkLimit = arith_uint256(~arith_uint256() >> 16);
 
-        genesis = CreateGenesisBlock(1527921840, 64209, 0x1f00ffff, 1, 0);
+        genesis = CreateGenesisBlock(1528112418, 162056, 0x1f00ffff, 1, 0);
 	    /*consensus.hashGenesisBlock = uint256S("0x01");
 
 		        if (true && genesis.GetHash() != consensus.hashGenesisBlock)
@@ -173,8 +173,8 @@ public:
 		            printf("new mainnet genesis hash: %s\n", genesis.GetHash().ToString().c_str());
 		        }*/
 	    consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0000ec5f3418093211b9c849188c04cf63523851fcc3877dd9bba61917d0578e"));
-        assert(genesis.hashMerkleRoot == uint256S("0xa9cf30ca0af76c1b0e7b827b010bbdd521dcb8b5ce29521314bb940d0f886a26"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00003f6a68e57951ee0b9a6b09a425c11931980166ce24f268d54756c1c9b696"));
+        assert(genesis.hashMerkleRoot == uint256S("0x2214c5d785ddc5ec53a6baaf981680c8c112e85fbfa8747eec0afce1b05da1e5"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,53);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,85);
@@ -185,11 +185,9 @@ public:
         vFixedSeeds.clear();
       	vSeeds.clear();
 
-       // vSeeds.push_back(CDNSSeedData("supernode.navcoin.org", "95.183.51.56"));
-       // vSeeds.push_back(CDNSSeedData("navtech1.navcoin.org", "95.183.52.55"));
-       // vSeeds.push_back(CDNSSeedData("navtech2.navcoin.org", "95.183.52.28"));
-       // vSeeds.push_back(CDNSSeedData("navtech3.navcoin.org", "95.183.52.29"));
-       // vSeeds.push_back(CDNSSeedData("navtech4.navcoin.org", "95.183.53.184"));
+	    vSeeds.push_back(CDNSSeedData("h2757438.stratoserver.net", "85.214.108.173"));
+	    vSeeds.push_back(CDNSSeedData("h2757446.stratoserver.net", "85.214.32.253"));
+	    vSeeds.push_back(CDNSSeedData("h2761178.stratoserver.net", "81.169.198.14"));
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
@@ -224,7 +222,7 @@ public:
             (957163, uint256S("0x53a4525300051ce014fb034217690735121a42e5423b97385afbbbd5380f7583"))
             (1465787,uint256S("0x91694fd2980c65e6b81e8af75bf817d0ae9240863e0a0ef953d7ddc19cd86407"))
             (1628312,uint256S("c79f1222bf0e3b6c9983543692261f2e3d06e8b0685a47fe3769e39c76a18d67")),*/
-		1527921840, // * UNIX timestamp of last checkpoint block
+		1528112418, // * UNIX timestamp of last checkpoint block
             0,    // * total number of transactions between genesis and last checkpoint
                         //   (the tx=... number in the SetBestChain debug.log lines)
             500        // * estimated number of transactions per day after checkpoint
@@ -303,7 +301,7 @@ public:
         nPruneAfterHeight = 1000;
         bnProofOfWorkLimit = arith_uint256(~arith_uint256() >> 16);
 
-        genesis = CreateGenesisBlockTestnet(1527921840, 2043260271, 0x1d00ffff, 1, 0);
+        genesis = CreateGenesisBlockTestnet(1528112418, 2043284428, 0x1d00ffff, 1, 0);
 
         /*consensus.hashGenesisBlock = uint256S("0x01");
         if (true && (genesis.GetHash() != consensus.hashGenesisBlock || genesis.hashMerkleRoot != uint256S("0x472868bc7686c2f3e852eb12ab1757c9f2b2848f13ad7f7b848eef70c3f86fdd")))
@@ -322,8 +320,8 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         
-        assert(consensus.hashGenesisBlock == uint256S("0x00000f20248f279f984cf684bf3ca31f72897ca9f1de8ede6b3c94c77ada61be"));
-        assert(genesis.hashMerkleRoot == uint256S("0xaac42d6798177281962039a56c6210cd44d513d3ea65ce10dba49c3891f8c9f6"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00007ffb2e28ce96da39198c0f42b07eef72cb3b53e21ab36435be7ff929cd94"));
+        assert(genesis.hashMerkleRoot == uint256S("0xd1bae2a98023ccd1c492dcde8f7bdd0f3d11debd47429058f7de3a80a7134271"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,54);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,86);
@@ -342,7 +340,7 @@ public:
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
             ( 0, uint256S("0x001")),
-			1527845263, // * UNIX timestamp of last checkpoint block
+			1528112418, // * UNIX timestamp of last checkpoint block
             0,          // * total number of transactions between genesis and last checkpoint
                         //   (the tx=... number in the SetBestChain debug.log lines)
             250         // * estimated number of transactions per day after checkpoint
