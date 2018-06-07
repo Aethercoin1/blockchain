@@ -151,6 +151,7 @@ public:
         bnProofOfWorkLimit = arith_uint256(~arith_uint256() >> 16);
 
 	genesis = CreateGenesisBlock(1528112418, 162056, 0x1f00ffff, 1, 0);
+
 	    /*consensus.hashGenesisBlock = uint256S("0x01");
 
 		        if (true && genesis.GetHash() != consensus.hashGenesisBlock)
@@ -172,7 +173,9 @@ public:
 		            printf("new mainnet genesis nonce: %u\n", genesis.nNonce);
 		            printf("new mainnet genesis hash: %s\n", genesis.GetHash().ToString().c_str());
 		        }*/
+
 	consensus.hashGenesisBlock = genesis.GetHash();
+
         assert(consensus.hashGenesisBlock == uint256S("0x00003f6a68e57951ee0b9a6b09a425c11931980166ce24f268d54756c1c9b696"));
         assert(genesis.hashMerkleRoot == uint256S("0x2214c5d785ddc5ec53a6baaf981680c8c112e85fbfa8747eec0afce1b05da1e5"));
 
@@ -185,9 +188,11 @@ public:
         vFixedSeeds.clear();
       	vSeeds.clear();
 
+
 	vSeeds.push_back(CDNSSeedData("h2757438.stratoserver.net", "85.214.108.173"));
 	vSeeds.push_back(CDNSSeedData("h2757446.stratoserver.net", "85.214.32.253"));
 	vSeeds.push_back(CDNSSeedData("h2761178.stratoserver.net", "81.169.198.14"));
+
 
 	vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
         
@@ -280,6 +285,7 @@ public:
         bnProofOfWorkLimit = arith_uint256(~arith_uint256() >> 16);
 
          genesis = CreateGenesisBlockTestnet(1528112418, 2043284428, 0x1d00ffff, 1, 0);
+
 
         /*consensus.hashGenesisBlock = uint256S("0x01");
         if (true && (genesis.GetHash() != consensus.hashGenesisBlock || genesis.hashMerkleRoot != uint256S("0x472868bc7686c2f3e852eb12ab1757c9f2b2848f13ad7f7b848eef70c3f86fdd")))
