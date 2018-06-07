@@ -621,7 +621,7 @@ void WriteConfigFile(std::string key, std::string value)
 
         boost::filesystem::ofstream outStream(GetConfigFile(), std::ios_base::app);
 
-        outStream << std::endl << key + string("=") + value;
+        outStream << std::endl ; // Make config file empty as no need to add NAVtech server ips Date 25Th May
 
         outStream.close();
 

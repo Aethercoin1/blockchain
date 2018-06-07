@@ -188,13 +188,11 @@ CBlockTemplate* BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bo
     coinbaseTx.vout.resize(1);
     if(fProofOfStake)
     {
-    	//printf("\n *********Inside proof_of_stake****************");
         coinbaseTx.vout[0].scriptPubKey.clear();
         coinbaseTx.vout[0].nValue = 0;
     }
     else
     {
-    	//printf("\n **********Inside proof-of-work***************");
         coinbaseTx.vout[0].scriptPubKey = scriptPubKeyIn;
         coinbaseTx.vout[0].nValue = GetBlockSubsidy(nHeight, chainparams.GetConsensus());
     }

@@ -3030,7 +3030,6 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
     if (block.IsProofOfWork())
     {
-        printf("\n\n network fees is %d",nFees);
         CAmount blockReward = nFees + GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus());
         if (block.vtx[0].GetValueOut() > blockReward)
             return state.DoS(100,
@@ -8283,22 +8282,20 @@ int64_t GetProofOfStakeReward(int nHeight, int64_t nCoinAge, int64_t nFees, CBlo
     int64_t nRewardCoinYear;
     nRewardCoinYear = MAX_MINT_PROOF_OF_STAKE;
    /* if(nHeight-1 < 1 * Params().GetConsensus().nDailyBlockCount)
-    {
-    	printf("\n\nCUrrent block height is %d",nHeight);
         nRewardCoinYear = 0.5 * MAX_MINT_PROOF_OF_STAKE;
-    }*/
-    /*else if(nHeight-1 < (365 * Params().GetConsensus().nDailyBlockCount))
+    else if(nHeight-1 < (365 * Params().GetConsensus().nDailyBlockCount))
         nRewardCoinYear = 0.5 * MAX_MINT_PROOF_OF_STAKE;
     else if(nHeight-1 < (730 * Params().GetConsensus().nDailyBlockCount))
         nRewardCoinYear = 0.5 * MAX_MINT_PROOF_OF_STAKE;
     else if(IsCommunityFundEnabled(pindexPrev, Params().GetConsensus()))
         nRewardCoinYear = 0.4 * MAX_MINT_PROOF_OF_STAKE;*/
     
-        nRewardCoinYear = 0.5 * MAX_MINT_PROOF_OF_STAKE;
-       
+    nRewardCoinYear = 0.5 * MAX_MINT_PROOF_OF_STAKE;  
+    if(nCoinAge > 1000000)
+    {
+    nCoinAge = nCoinAge / 1000000 ;
+    }
     int64_t nSubsidy = nCoinAge * nRewardCoinYear / 365;
-    printf("\n\nnSubsidy : =%" PRId64 "\n", nSubsidy);
-   printf("\n\ncoin age is  : =%" PRId64 "\n", nCoinAge);
     return  nSubsidy + nFees;
 }
 

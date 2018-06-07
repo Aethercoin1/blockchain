@@ -30,6 +30,19 @@
 #include <boost/lexical_cast.hpp>
 #include <univalue.h>
 
+struct tm *
+localtime_r (const time_t *timer, struct tm *result)
+{
+   struct tm *local_result;
+   local_result = localtime (timer);
+
+   if (local_result == NULL || result == NULL)
+     return NULL;
+
+   memcpy (result, local_result, sizeof (result));
+   return result;
+}
+
 using namespace std;
 
 int64_t nWalletUnlockTime;

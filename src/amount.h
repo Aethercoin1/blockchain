@@ -28,7 +28,7 @@ extern const std::string CURRENCY_UNIT;
  * critical; in unusual circumstances like a(nother) overflow bug that allowed
  * for the creation of coins out of thin air modification could lead to a fork.
  * */
-static const CAmount MAX_MONEY = 1040000000 * COIN;//Changed Max coin supply
+static const CAmount MAX_MONEY = 104000000 * COIN;//Changed Max coin supply
 inline bool MoneyRange(const CAmount& nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
 
 /**

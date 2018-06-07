@@ -3,7 +3,7 @@
 
 QString Skinize()
 {
-    return "QDialog { background: rgba(255,255,255,0.5) ; border: 0; }"
+    return "QDialog { background: #fff ; border: 0; }"
            "QStackedWidget { background: rgba(255,255,255,0.5) ; border: 0 }"
            "QScrollArea { background: rgba(255,255,255,0.5) ; border: 0 }"
             "#scrollAreaWidgetContents { background: #fff }"
