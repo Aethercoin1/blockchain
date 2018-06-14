@@ -132,7 +132,6 @@ void BlockAssembler::resetBlock()
 CBlockTemplate* BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fProofOfStake, uint64_t* pFees)
 {
     resetBlock();
-
     pblocktemplate.reset(new CBlockTemplate());
 
     if(!pblocktemplate.get())
@@ -216,7 +215,6 @@ CBlockTemplate* BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bo
             }
         }
 
-
         for (unsigned int i = 0; i < vAddedPaymentRequestVotes.size(); i++)
         {
             CFund::CPaymentRequest prequest; CFund::CProposal parent;
@@ -238,7 +236,6 @@ CBlockTemplate* BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bo
                 }
             }
         }
-
         UniValue strDZeel(UniValue::VARR);
         std::vector<CFund::CPaymentRequest> vec;
         if(pblocktree->GetPaymentRequestIndex(vec))
@@ -269,7 +266,6 @@ CBlockTemplate* BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bo
         coinbaseTx.strDZeel = strDZeel.write();
     }
     pblock->vtx[0] = coinbaseTx;
-
     pblocktemplate->vchCoinbaseCommitment = GenerateCoinbaseCommitment(*pblock, pindexPrev, chainparams.GetConsensus());
     pblocktemplate->vTxFees[0] = -nFees;
 
@@ -768,7 +764,9 @@ void AetherCoinStaker(const CChainParams& chainparams)
                 MilliSleep(500);
             }
             else
+            {
                 MilliSleep(nMinerSleep);
+            }
 
         }
     }
@@ -811,8 +809,7 @@ bool SignBlock(CBlock *pblock, CWallet& wallet, int64_t nFees)
   txCoinStake.nTime &= ~STAKE_TIMESTAMP_MASK;
 
   int64_t nSearchTime = txCoinStake.nTime; // search to current time
-
-  if (nSearchTime > nLastCoinStakeSearchTime)
+  if (nSearchTime >= nLastCoinStakeSearchTime)
   {
 
       int64_t nSearchInterval = nBestHeight+1 > 0 ? 1 : nSearchTime - nLastCoinStakeSearchTime;
@@ -866,7 +863,6 @@ bool SignBlock(CBlock *pblock, CWallet& wallet, int64_t nFees)
       nLastCoinStakeSearchInterval = nSearchTime - nLastCoinStakeSearchTime;
       nLastCoinStakeSearchTime = nSearchTime;
   }
-
   return false;
 }
 #endif

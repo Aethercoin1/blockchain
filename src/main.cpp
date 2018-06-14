@@ -1802,21 +1802,18 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
 
+CAmount nSubsidy;
+
     if (nHeight == 1)
     {
-    	printf("\n\nHeight of block is %d ",nHeight);
-        CAmount nSubsidy = 50000000 * COIN;
+        nSubsidy = 50000000 * COIN;
         return nSubsidy;
     }
-
     int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
     // Force block reward to zero when right shift is undefined.
     if (halvings >= 64)
         return 0;
-
-    CAmount nSubsidy = 50 * COIN;
-
-
+    nSubsidy = 50 * COIN;
     // Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
     nSubsidy >>= halvings;
     return nSubsidy;
@@ -3046,7 +3043,6 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
         int64_t nCalculatedStakeReward = GetProofOfStakeReward(pindex->nHeight, nCoinAge, nFees, pindex->pprev);
 
-        printf("\n\n ****CALCULATED STAKING REWARD is : %ld",nCalculatedStakeReward);
         if (nStakeReward > nCalculatedStakeReward)
             return state.DoS(100, error("ConnectBlock() : coinstake pays too much(actual=%d vs calculated=%d)", nStakeReward, nCalculatedStakeReward));
     }
@@ -4416,14 +4412,14 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIn
 
     // Enforce block.nVersion=2 rule that the coinbase starts with serialized block height
     // if 750 of the last 1,000 blocks are version 2 or greater (51/100 if testnet):
-    if (block.nVersion >= 2 && IsSuperMajority(2, pindexPrev, consensusParams.nMajorityEnforceBlockUpgrade, consensusParams))
+    /*if (block.nVersion >= 2 && IsSuperMajority(2, pindexPrev, consensusParams.nMajorityEnforceBlockUpgrade, consensusParams))
     {
         CScript expect = CScript() << nHeight;
         if (block.vtx[0].vin[0].scriptSig.size() < expect.size() ||
             !std::equal(expect.begin(), expect.end(), block.vtx[0].vin[0].scriptSig.begin())) {
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-height", false, "block height mismatch in coinbase");
         }
-    }
+    }*/
 
     // Validation for witness commitments.
     // * We compute the witness hash (which is the hash including witnesses) of all the block's transactions, except the
@@ -4619,7 +4615,7 @@ static bool AcceptBlock(const CBlock& block, CValidationState& state, const CCha
     }
     if (fNewBlock) *fNewBlock = true;
 
-    if ((!CheckBlock(block, state, chainparams.GetConsensus(), GetAdjustedTime())) || !ContextualCheckBlock(block, state, pindex->pprev)) {
+    if ((!CheckBlock(block, state, chainparams.GetConsensus(), GetAdjustedTime()))|| !ContextualCheckBlock(block, state, pindex->pprev)) {
         if (state.IsInvalid() && !state.CorruptionPossible()) {
             pindex->nStatus |= BLOCK_FAILED_VALID;
             setDirtyBlockIndex.insert(pindex);
@@ -8264,7 +8260,9 @@ bool CheckKernel(CBlockIndex* pindexPrev, unsigned int nBits, int64_t nTime, con
     CBlockIndex* pblockindex = mapBlockIndex[hashBlock];
 
     if (pblockindex->GetBlockTime() + Params().GetConsensus().nStakeMinAge > nTime)
+    {
         return false;
+    }
 
     if (pBlockTime)
         *pBlockTime = pblockindex->GetBlockTime();

@@ -102,7 +102,7 @@ public:
         consensus.nDailyBlockCount =  (24 * 60 * 60) / consensus.nTargetSpacing;
         consensus.nModifierInterval = 10 * 60; // time to elapse before new modifier is computed
         consensus.nTargetTimespan = 25 * 30;
-        consensus.nLastPOWBlock = 500;//Reduced to 300 block
+        consensus.nLastPOWBlock = 20000;//Reduced to 300 block
         consensus.nVotingPeriod = 2880 * 7; // 7 Days
         consensus.nMinimumQuorum = 0.5;
         consensus.nQuorumVotes = consensus.nVotingPeriod * consensus.nMinimumQuorum;
@@ -150,9 +150,9 @@ public:
         nPruneAfterHeight = 100000;
         bnProofOfWorkLimit = arith_uint256(~arith_uint256() >> 16);
 
-	genesis = CreateGenesisBlock(1528112418, 162056, 0x1f00ffff, 1, 0);
+	genesis = CreateGenesisBlock(1528441990, 124148, 0x1f00ffff, 1, 0);
 
-	    /*consensus.hashGenesisBlock = uint256S("0x01");
+	 /*   consensus.hashGenesisBlock = uint256S("0x01");
 
 		        if (true && genesis.GetHash() != consensus.hashGenesisBlock)
 		        {
@@ -176,8 +176,8 @@ public:
 
 	consensus.hashGenesisBlock = genesis.GetHash();
 
-        assert(consensus.hashGenesisBlock == uint256S("0x00003f6a68e57951ee0b9a6b09a425c11931980166ce24f268d54756c1c9b696"));
-        assert(genesis.hashMerkleRoot == uint256S("0x2214c5d785ddc5ec53a6baaf981680c8c112e85fbfa8747eec0afce1b05da1e5"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00002d1722b9427a9af34de8075351a29068de127e766fea5628e3c4cf6b97d6"));
+        assert(genesis.hashMerkleRoot == uint256S("0xfdf9f1d4ce04eb4a629c1d17a9080351095edb19f26c4cb0744a34dc1405007c"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,53);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,85);
@@ -205,7 +205,7 @@ public:
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
 	    ( 0, uint256S("0x001")),
-	      1528112418, // * UNIX timestamp of last checkpoint block
+	      1528441990, // * UNIX timestamp of last checkpoint block
               0,    // * total number of transactions between genesis and last checkpoint
                         //   (the tx=... number in the SetBestChain debug.log lines)
               500        // * estimated number of transactions per day after checkpoint
@@ -284,7 +284,7 @@ public:
         nPruneAfterHeight = 1000;
         bnProofOfWorkLimit = arith_uint256(~arith_uint256() >> 16);
 
-         genesis = CreateGenesisBlockTestnet(1528112418, 2043284428, 0x1d00ffff, 1, 0);
+         genesis = CreateGenesisBlockTestnet(1528441990, 2043358279, 0x1d00ffff, 1, 0);
 
 
         /*consensus.hashGenesisBlock = uint256S("0x01");
@@ -304,8 +304,8 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         
-        assert(consensus.hashGenesisBlock == uint256S("0x00007ffb2e28ce96da39198c0f42b07eef72cb3b53e21ab36435be7ff929cd94"));
-        assert(genesis.hashMerkleRoot == uint256S("0xd1bae2a98023ccd1c492dcde8f7bdd0f3d11debd47429058f7de3a80a7134271"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000002f958a27e446599b93b689278ee746b8888f6dc1a5a93a795bc766eb21d"));
+        assert(genesis.hashMerkleRoot == uint256S("0x19de038419d4fe19d00094e1d86f802490c5adab3bcd2dd549022ac6afb19762"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,54);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,86);
@@ -324,7 +324,7 @@ public:
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
             ( 0, uint256S("0x001")),
-			1528112418, // * UNIX timestamp of last checkpoint block
+	      1528441990, // * UNIX timestamp of last checkpoint block
             0,          // * total number of transactions between genesis and last checkpoint
                         //   (the tx=... number in the SetBestChain debug.log lines)
             250         // * estimated number of transactions per day after checkpoint
