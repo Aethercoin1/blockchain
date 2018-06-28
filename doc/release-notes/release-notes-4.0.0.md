@@ -25,9 +25,9 @@ Bug fixes to the getbalance/listaccounts RPC commands, which would report incorr
 
 New option: -zapwallettxes to rebuild the wallet's transaction information
 
-### Navcoin-cli
+### Aethercoin-cli
 
-Another change in the 4.0 release is moving away from the navcoind executable functioning both as a server and as a RPC client. The RPC client functionality ("tell the running navcoin daemon to do THIS") was split into a separate executable, 'navcoin-cli'.
+Another change in the 4.0 release is moving away from the navcoind executable functioning both as a server and as a RPC client. The RPC client functionality ("tell the running aethercoin daemon to do THIS") was split into a separate executable, 'aethercoin-cli'.
 
 ### RPC access control changes
 
@@ -62,10 +62,10 @@ The RPC server is started earlier now, before most of the expensive intialisatio
 
 This new behaviour can be useful for clients to know that a server is already started and will be available soon (for instance, so that they do not have to start it themselves).
 
-### navcoin-tx
+### aethercoin-tx
 
 It has been observed that many of the RPC functions offered by navcoind are "pure functions", and operate independently of the navcoind wallet. This included many of the RPC "raw transaction" API functions, such as createrawtransaction.
-navcoin-tx is a newly introduced command line utility designed to enable easy manipulation of aethercoin transactions. A summary of its operation may be obtained via "navcoin-tx --help"
+aethercoin-tx is a newly introduced command line utility designed to enable easy manipulation of aethercoin transactions. A summary of its operation may be obtained via "aethercoin-tx --help"
 
 Transactions may be created or signed in a manner similar to the RPC raw tx API. Transactions may be updated, deleting inputs or outputs, or appending new inputs and outputs.
 
@@ -141,9 +141,9 @@ Linux ARM builds have been added to the uploaded executables.
 
 The following extra files can be found in the download directory or torrent:
 
-navcoin-${VERSION}-arm-linux-gnueabihf.tar.gz: Linux binaries targeting the 32-bit ARMv7-A architecture.
+aethercoin-${VERSION}-arm-linux-gnueabihf.tar.gz: Linux binaries targeting the 32-bit ARMv7-A architecture.
 
-navcoin-${VERSION}-aarch64-linux-gnu.tar.gz: Linux binaries targeting the 64-bit ARMv8-A architecture.
+aethercoin-${VERSION}-aarch64-linux-gnu.tar.gz: Linux binaries targeting the 64-bit ARMv8-A architecture.
 
 ARM builds are still experimental. Note that the device you use must be (backward) compatible with the architecture targeted by the binary that you use. For example, a Raspberry Pi 2 Model B or Raspberry Pi 3 Model B (in its 32-bit execution state) device, can run the 32-bit ARMv7-A targeted binary. However, no model of Raspberry Pi 1 device can run either binary because they are all ARMv6 architecture devices that are not compatible with ARMv7-A or ARMv8-A.
 

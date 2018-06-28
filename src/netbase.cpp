@@ -444,11 +444,9 @@ bool static ConnectSocketDirectly(const CService &addrConnect, SOCKET& hSocketRe
         LogPrintf("Cannot connect to %s: unsupported network\n", addrConnect.ToString());
         return false;
     }
-
     SOCKET hSocket = socket(((struct sockaddr*)&sockaddr)->sa_family, SOCK_STREAM, IPPROTO_TCP);
     if (hSocket == INVALID_SOCKET)
         return false;
-
     int set = 1;
 #ifdef SO_NOSIGPIPE
     // Different way of disabling SIGPIPE on BSD

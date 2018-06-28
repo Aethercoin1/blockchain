@@ -1768,7 +1768,6 @@ void AetherCoinGUI::updateStakingStatus()
                     text = tr("Expected time to earn reward is %n day(s)", "", nEstimateTime/(60*60*24));
                 }
             }
-
             nWeight /= COIN;
             nNetworkWeight /= COIN;
 
@@ -1777,7 +1776,6 @@ void AetherCoinGUI::updateStakingStatus()
         }
         else
         {
-
     //        labelStakingIcon->setPixmap(QIcon(fUseBlackTheme ? ":/icons/black/staking_off" : ":/icons/staking_off").pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
             if (pwalletMain && pwalletMain->IsLocked())
                 walletFrame->setStakingStatus(tr("Not staking because wallet is locked"));
