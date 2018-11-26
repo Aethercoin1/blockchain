@@ -14,17 +14,9 @@ https://aethercoin.org/project-roadmap/
 | Stake Minimum Age | `2 hours` |
 | Stake Maximum Age | `24 hours` |
 | Stake Reward | `5% per annum` |
-| Port | `44440` |
-| RPC Port | `44444` |
+| Port | `44445` |
+| RPC Port | `44447` |
 
-## ATHtech Settings
-
-| Specification | Value |
-|:-----------|:-----------|
-| addanonserver | `95.183.52.55:3000` |
-| addanonserver | `95.183.53.184:3000` |
-| addanonserver | `95.183.52.28:3000` |
-| addanonserver | `95.183.52.29:3000` |
 
 ## Social Channels
 
